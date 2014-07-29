@@ -24,6 +24,7 @@
 		CA88EB7D198728BD00F1AFDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA88EB58198728BD00F1AFDC /* UIKit.framework */; };
 		CA88EB85198728BD00F1AFDC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB83198728BD00F1AFDC /* InfoPlist.strings */; };
 		CA88EB87198728BD00F1AFDC /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA88EB86198728BD00F1AFDC /* BubblesTests.m */; };
+		CA88EB9219872A8000F1AFDC /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB9119872A8000F1AFDC /* bubble@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		CA88EB82198728BD00F1AFDC /* BubblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BubblesTests-Info.plist"; sourceTree = "<group>"; };
 		CA88EB84198728BD00F1AFDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA88EB86198728BD00F1AFDC /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
+		CA88EB9119872A8000F1AFDC /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		CA88EB5C198728BD00F1AFDC /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				CA88EB9019872A8000F1AFDC /* bubbles-assets */,
 				CA88EB65198728BD00F1AFDC /* BRAppDelegate.h */,
 				CA88EB66198728BD00F1AFDC /* BRAppDelegate.m */,
 				CA88EB68198728BD00F1AFDC /* Main.storyboard */,
@@ -162,6 +165,14 @@
 				CA88EB83198728BD00F1AFDC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA88EB9019872A8000F1AFDC /* bubbles-assets */ = {
+			isa = PBXGroup;
+			children = (
+				CA88EB9119872A8000F1AFDC /* bubble@2x.png */,
+			);
+			path = "bubbles-assets";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +255,7 @@
 				CA88EB61198728BD00F1AFDC /* InfoPlist.strings in Resources */,
 				CA88EB74198728BD00F1AFDC /* Images.xcassets in Resources */,
 				CA88EB72198728BD00F1AFDC /* Spaceship.png in Resources */,
+				CA88EB9219872A8000F1AFDC /* bubble@2x.png in Resources */,
 				CA88EB6A198728BD00F1AFDC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

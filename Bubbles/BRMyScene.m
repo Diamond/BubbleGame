@@ -8,41 +8,112 @@
 
 #import "BRMyScene.h"
 
-@implementation BRMyScene
+@implementation BRMyScene {
+    SKSpriteNode *_bubble;
+}
+
+static const CGFloat  MIN_ANGLE        = 0.0f;
+static const CGFloat  MAX_ANGLE        = 360.0f * M_PI / 180.0f;
+static const CGFloat  BUBBLE_SPEED     = 50.0f;
+static const uint32_t EDGE_CATEGORY    = 0x1 << 0;
+static const uint32_t BUBBLE_CATEGORY  = 0x1 << 1;
+static const int      STARTING_BUBBLES = 20;
+
+static inline CGVector radiansToVector(CGFloat radians)
+{
+    CGVector vector;
+    vector.dx = cosf(radians);
+    vector.dy = sinf(radians);
+    return vector;
+}
+
+static inline CGFloat randomInRange(CGFloat low, CGFloat high)
+{
+    CGFloat value = arc4random_uniform(UINT32_MAX) / (CGFloat)UINT32_MAX;
+    return value * (high - low) + low;
+}
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+        self.backgroundColor = [SKColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
+        for (int i = 0; i < STARTING_BUBBLES; i++) {
+            [self addBubble];
+        }
+        [self addEdges];
     }
     return self;
+}
+
+-(void)addEdges
+{
+    SKNode *leftEdge = [[SKNode alloc] init];
+    leftEdge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(0.0, self.size.height)];
+    leftEdge.position = CGPointZero;
+    leftEdge.physicsBody.categoryBitMask = EDGE_CATEGORY;
+    
+    SKNode *rightEdge = [[SKNode alloc] init];
+    rightEdge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(0.0, self.size.height)];
+    rightEdge.position = CGPointMake(self.size.width, 0.0f);
+    rightEdge.physicsBody.categoryBitMask = EDGE_CATEGORY;
+    
+    SKNode *topEdge = [[SKNode alloc] init];
+    topEdge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(self.size.width, 0.0f)];
+    topEdge.position = CGPointMake(0.0f, self.size.height);
+    topEdge.physicsBody.categoryBitMask = EDGE_CATEGORY;
+    
+    SKNode *bottomEdge = [[SKNode alloc] init];
+    bottomEdge.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointZero toPoint:CGPointMake(self.size.width, 0.0f)];
+    bottomEdge.position = CGPointMake(0.0f, 0.0f);
+    bottomEdge.physicsBody.categoryBitMask = EDGE_CATEGORY;
+    
+    [self addChild:leftEdge];
+    [self addChild:rightEdge];
+    [self addChild:topEdge];
+    [self addChild:bottomEdge];
+}
+
+-(void)addBubble
+{
+    _bubble = [SKSpriteNode spriteNodeWithImageNamed:@"bubble"];
+    _bubble.anchorPoint = CGPointMake(0.5f, 0.5f);
+    _bubble.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:8.0f];
+    _bubble.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+    CGVector direction = radiansToVector(randomInRange(MIN_ANGLE, MAX_ANGLE));
+    _bubble.physicsBody.velocity = CGVectorMake(direction.dx * BUBBLE_SPEED, direction.dy * BUBBLE_SPEED);
+    _bubble.physicsBody.categoryBitMask = BUBBLE_CATEGORY;
+    _bubble.physicsBody.collisionBitMask = EDGE_CATEGORY;
+    _bubble.physicsBody.affectedByGravity = FALSE;
+    _bubble.physicsBody.restitution = 1.0f;
+    _bubble.physicsBody.linearDamping = 0.0f;
+    _bubble.physicsBody.friction = 0.0f;
+    [self addChild:_bubble];
+}
+
+-(void)addExplosionAt:(CGPoint)position
+{
+    CGRect box = CGRectMake(0, 0, 16, 16);
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:box];
+    SKShapeNode  *explosion  = [SKShapeNode node];
+    explosion.antialiased    = TRUE;
+    explosion.path           = circlePath.CGPath;
+    //explosion.anchorPoint   = CGPointMake(0.5f, 0.5f);
+    explosion.position       = CGPointMake(position.x - 8, position.y - 8);
+    explosion.fillColor      = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f];
+    explosion.strokeColor    = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+    SKAction *expand         = [SKAction scaleBy:5.0f duration:3.0f];
+    SKAction *disappear      = [SKAction removeFromParent];
+    SKAction *sequence       = [SKAction sequence:@[expand, disappear]];
+    [explosion runAction:sequence];
+    [self addChild:explosion];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        CGPoint position = [touch locationInNode:self];
+        [self addExplosionAt:position];
     }
 }
 
