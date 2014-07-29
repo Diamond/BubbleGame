@@ -36,7 +36,7 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        self.backgroundColor = [SKColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f];
+        self.backgroundColor = [SKColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f];
         for (int i = 0; i < STARTING_BUBBLES; i++) {
             [self addBubble];
         }
@@ -75,7 +75,8 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)addBubble
 {
-    _bubble = [SKSpriteNode spriteNodeWithImageNamed:@"bubble"];
+    _bubble = [SKSpriteNode spriteNodeWithImageNamed:@"bluebubble"];
+    _bubble.size = CGSizeMake(8.0f, 8.0f);
     _bubble.anchorPoint = CGPointMake(0.5f, 0.5f);
     _bubble.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:8.0f];
     _bubble.position = CGPointMake(self.size.width / 2, self.size.height / 2);
@@ -92,18 +93,13 @@ static inline CGFloat randomInRange(CGFloat low, CGFloat high)
 
 -(void)addExplosionAt:(CGPoint)position
 {
-    CGRect box = CGRectMake(0, 0, 16, 16);
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:box];
-    SKShapeNode  *explosion  = [SKShapeNode node];
-    explosion.antialiased    = TRUE;
-    explosion.path           = circlePath.CGPath;
-    //explosion.anchorPoint   = CGPointMake(0.5f, 0.5f);
-    explosion.position       = CGPointMake(position.x - 8, position.y - 8);
-    explosion.fillColor      = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f];
-    explosion.strokeColor    = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
-    SKAction *expand         = [SKAction scaleBy:5.0f duration:3.0f];
-    SKAction *disappear      = [SKAction removeFromParent];
-    SKAction *sequence       = [SKAction sequence:@[expand, disappear]];
+    SKSpriteNode *explosion = [SKSpriteNode spriteNodeWithImageNamed:@"explosion"];
+    explosion.size          = CGSizeMake(8.0f, 8.0f);
+    explosion.anchorPoint   = CGPointMake(0.5f, 0.5f);
+    explosion.position      = position;
+    SKAction *expand        = [SKAction scaleBy:10.0f duration:3.0f];
+    SKAction *disappear     = [SKAction removeFromParent];
+    SKAction *sequence      = [SKAction sequence:@[expand, disappear]];
     [explosion runAction:sequence];
     [self addChild:explosion];
 }

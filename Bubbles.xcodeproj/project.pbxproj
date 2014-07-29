@@ -17,7 +17,6 @@
 		CA88EB6A198728BD00F1AFDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB68198728BD00F1AFDC /* Main.storyboard */; };
 		CA88EB6D198728BD00F1AFDC /* BRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA88EB6C198728BD00F1AFDC /* BRViewController.m */; };
 		CA88EB70198728BD00F1AFDC /* BRMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CA88EB6F198728BD00F1AFDC /* BRMyScene.m */; };
-		CA88EB72198728BD00F1AFDC /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB71198728BD00F1AFDC /* Spaceship.png */; };
 		CA88EB74198728BD00F1AFDC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB73198728BD00F1AFDC /* Images.xcassets */; };
 		CA88EB7B198728BD00F1AFDC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA88EB7A198728BD00F1AFDC /* XCTest.framework */; };
 		CA88EB7C198728BD00F1AFDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA88EB54198728BD00F1AFDC /* Foundation.framework */; };
@@ -25,6 +24,8 @@
 		CA88EB85198728BD00F1AFDC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB83198728BD00F1AFDC /* InfoPlist.strings */; };
 		CA88EB87198728BD00F1AFDC /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA88EB86198728BD00F1AFDC /* BubblesTests.m */; };
 		CA88EB9219872A8000F1AFDC /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB9119872A8000F1AFDC /* bubble@2x.png */; };
+		CA88EB96198746D300F1AFDC /* explosion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB95198746D300F1AFDC /* explosion@2x.png */; };
+		CA88EB9A198747E300F1AFDC /* bluebubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA88EB99198747E300F1AFDC /* bluebubble@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,6 @@
 		CA88EB6C198728BD00F1AFDC /* BRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRViewController.m; sourceTree = "<group>"; };
 		CA88EB6E198728BD00F1AFDC /* BRMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRMyScene.h; sourceTree = "<group>"; };
 		CA88EB6F198728BD00F1AFDC /* BRMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRMyScene.m; sourceTree = "<group>"; };
-		CA88EB71198728BD00F1AFDC /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		CA88EB73198728BD00F1AFDC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA88EB79198728BD00F1AFDC /* BubblesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubblesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA88EB7A198728BD00F1AFDC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -62,6 +62,8 @@
 		CA88EB84198728BD00F1AFDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA88EB86198728BD00F1AFDC /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
 		CA88EB9119872A8000F1AFDC /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
+		CA88EB95198746D300F1AFDC /* explosion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "explosion@2x.png"; sourceTree = "<group>"; };
+		CA88EB99198747E300F1AFDC /* bluebubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluebubble@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,6 @@
 				CA88EB6C198728BD00F1AFDC /* BRViewController.m */,
 				CA88EB6E198728BD00F1AFDC /* BRMyScene.h */,
 				CA88EB6F198728BD00F1AFDC /* BRMyScene.m */,
-				CA88EB71198728BD00F1AFDC /* Spaceship.png */,
 				CA88EB73198728BD00F1AFDC /* Images.xcassets */,
 				CA88EB5D198728BD00F1AFDC /* Supporting Files */,
 			);
@@ -170,6 +171,8 @@
 		CA88EB9019872A8000F1AFDC /* bubbles-assets */ = {
 			isa = PBXGroup;
 			children = (
+				CA88EB99198747E300F1AFDC /* bluebubble@2x.png */,
+				CA88EB95198746D300F1AFDC /* explosion@2x.png */,
 				CA88EB9119872A8000F1AFDC /* bubble@2x.png */,
 			);
 			path = "bubbles-assets";
@@ -254,8 +257,9 @@
 			files = (
 				CA88EB61198728BD00F1AFDC /* InfoPlist.strings in Resources */,
 				CA88EB74198728BD00F1AFDC /* Images.xcassets in Resources */,
-				CA88EB72198728BD00F1AFDC /* Spaceship.png in Resources */,
 				CA88EB9219872A8000F1AFDC /* bubble@2x.png in Resources */,
+				CA88EB9A198747E300F1AFDC /* bluebubble@2x.png in Resources */,
+				CA88EB96198746D300F1AFDC /* explosion@2x.png in Resources */,
 				CA88EB6A198728BD00F1AFDC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
